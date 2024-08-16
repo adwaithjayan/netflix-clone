@@ -3,20 +3,22 @@ import { Link } from "react-router-dom";
 
 export default function TitleCard({title,category}:{title?:string,category?:string}) {
   const [movieData,setMovieData]=useState([]);
-
+  const apikey=import.meta.env.VITE_MOVIEDB_KEY;
+const url =import.meta.env.VITE_MOVIEDB_URL;
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzczMTY4N2M4ZWM2N2VjZTY5OThiMTlmYmNjMWQzYSIsIm5iZiI6MTcyMzc0MTg0OC40ODM5NjMsInN1YiI6IjY2NjA5ZWQ3ZDk1NmM2N2FhNzAwODBmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FY6xb_IEjILorgRXYE8q9OAxeW24eeBiPCwidgBraIk'
-    }
+      Authorization: `Bearer ${apikey}`,
+
+       }
   };
   
 
   useEffect(()=>{
 
     
-      fetch(`https://api.themoviedb.org/3/movie/${category?category:'now_playing'}?language=en-US&page=1`, options)
+      fetch(`${url}${category?category:'now_playing'}?language=en-US&page=1`, options)
       .then(response => response.json())
       .then(response => setMovieData(response.results))
       .catch(err => console.error(err));

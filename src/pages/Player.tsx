@@ -3,6 +3,10 @@ import back_arrow from '../assets/back_arrow_icon.png'
 import { useNavigate, useParams } from 'react-router-dom';
 export default function Player() {
   const navigate =useNavigate();
+  const apikey=import.meta.env.VITE_MOVIEDB_KEY;
+const url =import.meta.env.VITE_MOVIEDB_URL;
+
+
 const [videoData,setVideoData]=useState({
   name:'',
   key:'',
@@ -14,12 +18,12 @@ const {id } =useParams();
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzczMTY4N2M4ZWM2N2VjZTY5OThiMTlmYmNjMWQzYSIsIm5iZiI6MTcyMzc0MTg0OC40ODM5NjMsInN1YiI6IjY2NjA5ZWQ3ZDk1NmM2N2FhNzAwODBmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FY6xb_IEjILorgRXYE8q9OAxeW24eeBiPCwidgBraIk'
+      Authorization: `Bearer ${apikey}`,
     }
   };
   useEffect(()=>{
     
-  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+  fetch(`${url}movie/${id}/videos?language=en-US`, options)
   .then(response => response.json())
   .then(response => setVideoData(response.results[0]))
   .catch(err => console.error(err));
