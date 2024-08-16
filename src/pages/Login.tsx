@@ -40,7 +40,7 @@ export default function Login() {
        toast.success("Sign Up successful");
        
     }
-    catch(error){
+    catch(err:any){
       toast.error(err.code.split('/')[1].split('-').join(''));
 
     }
@@ -56,7 +56,7 @@ export default function Login() {
        toast.success("Sign In successful");
 
       }
-      catch(err){
+      catch(err:any){
           console.log("error",err);
           toast.error(err.code.split('/')[1].split('-').join(''));
       }
