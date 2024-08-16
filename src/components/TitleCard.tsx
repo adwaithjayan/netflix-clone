@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 
 export default function TitleCard({title,category}:{title?:string,category?:string}) {
@@ -26,16 +26,16 @@ const url =import.meta.env.VITE_MOVIEDB_URL;
       
 
   
-  })
+  });
   return (
     <div className="mt-[50px] mb-[30px]">
       <h2 className="mb-2 font-bold">{title? title:'Popular on Netflix'}</h2>
       <div className="flex gap-2.5 overflow-x-scroll">
-        {movieData.map((card,i) => {
+        {movieData.map(({id,backdrop_path,original_title},i) => {
           return (
-            <Link to={`/player/${card?.id}`} key={i} className="min-w-fit relative">
-              <img src={`https://image.tmdb.org/t/p/w500${card?.backdrop_path}`} alt="card" className="w-[240px] rounded cursor-pointer"/>
-              <p className="absolute bottom-2.5 right-2.5 text-[#e5e5e5]">{card?.original_title}</p>
+            <Link to={`/player/${id}`} key={i} className="min-w-fit relative">
+              <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="card" className="w-[240px] rounded cursor-pointer"/>
+              <p className="absolute bottom-2.5 right-2.5 text-[#e5e5e5]">{original_title}</p>
             </Link>
           )
         })}

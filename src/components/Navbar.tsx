@@ -3,7 +3,7 @@ import logo from '../assets/logo.png';
 import bell_icon from '../assets/bell_icon.svg';
 import profile_img from '../assets/profile_img.png';
 import caret_icon from '../assets/caret_icon.svg';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { toast } from 'react-toastify';
@@ -14,18 +14,6 @@ export default function Navbar() {
   const navref =useRef(null);
   const [loading,setLoading]=useState(false);
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', () => {
-  //     if (navref.current) {
-  //       const nav =navref.current;
-  //       if (window.scrollY >= 80) {
-  //         nav.classList.add('nav-dark');
-  //       } else {
-  //         nav.classList.remove('nav-dark');
-  //       }
-  //     }
-  //   });
-  // });
   const logout = async()=>{
     setLoading(true);
     try{
